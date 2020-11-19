@@ -1,5 +1,5 @@
 ## Initialise submodules
-./init.hs
+./init.sh
 
 # Add latest commit
 git add -A
