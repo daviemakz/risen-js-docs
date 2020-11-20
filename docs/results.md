@@ -117,6 +117,10 @@ Let's have a look at the terminal. You should see _something_ like this:
 [0] Service core has processed request for service: render
 ```
 
+> Your GUID's will be different as they are automatically generated.
+
+## Lifecycle Of Request
+
 As you can see you can track the flow of data through the Risen.JS framework. It's important for this to not be too confusing so let's take a high-level overview of the lifecycle of your request:
 
 1. You navigate to http://localhost:3000 and your browsers send a GET request to this address.
