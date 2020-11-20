@@ -104,7 +104,7 @@ class Index extends React.Component {
         <h2>Built For The Future</h2>
         <MarkdownBlock>
           Out of the box support for the latest ECMA+ features and full access
-          to all [NPM](https://www.npmjs.com/) packages allows you to build
+          to all NPM packages allows you to build
           flexible, high performance, scalable and products.
         </MarkdownBlock>
       </div>

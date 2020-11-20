@@ -38,12 +38,13 @@ function Help(props) {
     }
   ];
 
+ 
   return (
     <div className="docMainWrapper wrapper">
       <Container className="mainContainer documentContainer postContainer">
         <div className="post">
           <img
-            alt="Designed by vectorjuice / Freepik"
+            alt="Background vector created by tartila"
             src={`${baseUrl}img/help.jpg`}
             style={{
               width: "40%",
