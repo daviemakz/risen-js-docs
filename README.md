@@ -2,8 +2,8 @@
 
 Folder structure:
 
-`docs` - Contains the documentation on Risen.JS.
-`website` - Contains the code used to build the Risen.JS documentation.
+- `docs` - Contains the documentation on Risen.JS.
+- `website` - Contains the code used to build the Risen.JS documentation.
 
 ## Installation
 

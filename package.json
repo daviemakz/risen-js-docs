@@ -22,7 +22,9 @@
     "url": "https://github.com/daviemakz/risen-js-docs/issues"
   },
   "homepage": "https://github.com/daviemakz/risen-js-docs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^17.0.1"
+  },
   "devDependencies": {
     "and": "^0.0.3",
     "eslint": "^7.13.0",

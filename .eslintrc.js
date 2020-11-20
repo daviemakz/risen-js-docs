@@ -5,6 +5,11 @@ module.exports = {
     browser: true,
     amd: true
   },
+  settings: {
+    react: {
+      version: "detect" // React version. "detect" automatically picks the version you have installed.
+    }
+  },
   extends: [
     "plugin:react/recommended",
     "airbnb/hooks",
