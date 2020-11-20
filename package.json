@@ -4,6 +4,7 @@
   "description": "Documentation explaining the Risen.JS micro service framework",
   "main": "index.js",
   "scripts": {
+    "build": "cd website; yarn build;",
     "start": "cd website; yarn start;",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
     "test": "echo \"No tests defined!\""
