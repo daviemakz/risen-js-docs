@@ -1,0 +1,27 @@
+{
+  "docs": {
+    "Introduction": [
+      "quickstart",
+      "overview",
+      "philosophy",
+      "security",
+      "terminology"
+    ],
+    "Tutorial": [
+      "settingup",
+      "initialiseproject",
+      "defineprimeservice",
+      "definerenderservice",
+      "configureframework",
+      "viewresults"
+    ],
+    "API Reference": [
+      "apirisen",
+      "apiinstance",
+      "apiservices",
+      "apiglobalmethods",
+      "apidatastructure",
+      "apicodes"
+    ]
+  }
+}
