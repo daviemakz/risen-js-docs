@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const React = require("react");
+const React = require('react');
 
-const CompLibrary = require("../../core/CompLibrary.js");
+const CompLibrary = require('../../core/CompLibrary.js');
 
 const { MarkdownBlock } = CompLibrary; /* Used to read markdown */
 const { Container } = CompLibrary;
@@ -15,10 +15,10 @@ const { GridBlock } = CompLibrary;
 
 class HomeSplash extends React.Component {
   render() {
-    const { siteConfig, language = "" } = this.props;
+    const { siteConfig, language = '' } = this.props;
     const { baseUrl, docsUrl } = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
-    const langPart = `${language ? `${language}/` : ""}`;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+    const langPart = `${language ? `${language}/` : ''}`;
     const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SplashContainer = (props) => (
@@ -57,7 +57,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
           <PromoSection>
-            <Button href={docUrl("quickstart")}>Get started</Button>
+            <Button href={docUrl('quickstart')}>Get started</Button>
             <Button href="https://github.com/daviemakz/risen-js">
               Source code
             </Button>
@@ -70,12 +70,12 @@ class HomeSplash extends React.Component {
 
 class Index extends React.Component {
   render() {
-    const { config: siteConfig, language = "" } = this.props;
+    const { config: siteConfig, language = '' } = this.props;
     const { baseUrl, logoPath } = siteConfig;
 
     const Block = (props) => (
       <Container
-        padding={["bottom", "top"]}
+        padding={['bottom', 'top']}
         id={props.id}
         background={props.background}
       >
@@ -96,7 +96,7 @@ class Index extends React.Component {
     const FeatureCallout = () => (
       <div
         className="productShowcaseSection paddingBottom"
-        style={{ textAlign: "center" }}
+        style={{ textAlign: 'center' }}
       >
         <div className="middleImage">
           <img src={`${baseUrl}img/undraw_open_source.svg`} />
@@ -104,8 +104,8 @@ class Index extends React.Component {
         <h2>Built For The Future</h2>
         <MarkdownBlock>
           Out of the box support for the latest ECMA+ features and full access
-          to all NPM packages allows you to build
-          flexible, high performance, scalable and products.
+          to all NPM packages allows you to build flexible, high performance,
+          scalable and products.
         </MarkdownBlock>
       </div>
     );
@@ -115,18 +115,18 @@ class Index extends React.Component {
         {[
           {
             content:
-              "Designed to simplify data storage, services management, distributed business logic, logging (etc.) leaving you to focus on your requirements.",
+              'Designed to simplify data storage, services management, distributed business logic, logging (etc.) leaving you to focus on your requirements.',
             image: `${baseUrl}img/undraw_code_review.svg`,
-            imageAlign: "top",
-            title: "Fast, Simple and Unopinionated",
+            imageAlign: 'top',
+            title: 'Fast, Simple and Unopinionated'
           },
           {
             content:
-              "Under the hood, this framework uses the Express package and Quick-DB for long-term persistent storage providing everything you need to quickly deploy server-side applications.",
+              'Under the hood, this framework uses the Express package and Quick-DB for long-term persistent storage providing everything you need to quickly deploy server-side applications.',
             image: `${baseUrl}img/undraw_operating_system.svg`,
-            imageAlign: "top",
-            title: "Everything In One Place",
-          },
+            imageAlign: 'top',
+            title: 'Everything In One Place'
+          }
         ]}
       </Block>
     );

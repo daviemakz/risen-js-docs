@@ -153,7 +153,7 @@ In this example if you want to communicate with the service core custom operatio
 ```
 {
   destination: 'serviceCore',
-  funcName: 'getServiceData',
+  functionName: 'getServiceData',
   body: null
 }
 ```
@@ -323,7 +323,7 @@ This function shuts down the Risen.JS microservice framework. The service instan
 ```
 {
   destination: 'serviceCore',
-  funcName: 'end',
+  functionName: 'end',
   body: null // Nothing is required
 }
 ```
@@ -337,7 +337,7 @@ The storage is powered by [Quick-DB](https://www.npmjs.com/package/quick.db) so 
 ```
 {
   destination: 'serviceCore',
-  funcName: 'storage',
+  functionName: 'storage',
   body: {
     method: 'set' // See a full list by visiting the above link
     table: '_defaultTable', // Make sure you have defined the "table" in the when you initialised Risen.JS or you will get an error.
@@ -363,7 +363,7 @@ The [command object](apidatastructure.md#command-object) for adding **3** instan
 ```
 {
   destination: 'serviceCore',
-  funcName: 'changeInstances',
+  functionName: 'changeInstances',
   body: {
     name: 'exampleService' // The name of the service
     instances: 3 // The number of instances you want to add
@@ -378,7 +378,7 @@ The [command object](apidatastructure.md#command-object) for removing **3** inst
 ```
 {
   destination: 'serviceCore',
-  funcName: 'changeInstances',
+  functionName: 'changeInstances',
   body: {
     name: 'exampleService' // The name of the service
     instances: -3 // The number of instances you want to remove

@@ -23,7 +23,7 @@ This is the object you would pass into the [request](apiglobalmethods.md#request
 ```
 {
   destination: void 0,
-  funcName: '',
+  functionName: '',
   body: {}
 }
 ```

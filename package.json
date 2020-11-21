@@ -6,7 +6,9 @@
   "scripts": {
     "build": "cd website; yarn build;",
     "start": "cd website; yarn start;",
-    "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "format": "yarn prettier --write \"**/*.{js,jsx,ts,tsx,html}\"",
+    "format:fix": "(yarn format) && (yarn lint)",
     "test": "echo \"No tests defined!\""
   },
   "repository": {
