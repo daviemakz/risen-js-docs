@@ -47,7 +47,14 @@ const siteConfig = {
     links: [],
     logo: {},
     copyright: `Copyright © 2019 - ${new Date().getFullYear()} David Makuni`
-  }
+  },
+  usePrism: ['jsx', 'json','bash', 'sh'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+    '/risen-js/js/code-block-buttons.js',
+  ],
+  stylesheets: ['/risen-js/css/code-block-buttons.css']
 };
 
 module.exports = siteConfig;

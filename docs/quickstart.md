@@ -12,11 +12,15 @@ To install please follow the below instructions using your preferred package man
 
 ### NPM
 
-    npm install risen-js --save
+```sh
+npm install risen-js --save
+```
 
 ### Yarn
 
-    yarn add risen-js
+```sh
+yarn add risen-js
+```
 
 To see a working example of Risen.JS please visit the [tutorial](settingup.md) section.
 
@@ -46,6 +50,6 @@ If you have trouble installing `risen-js`, you may not have installed `node-gyp`
        python=python2.7
        ```
        (where `%USERPROFILE%` is your home directory).
-    6. Run `npm install`
+    6. Run `yarn install` or `npm install`
 
 If none of these solved your problem, try browsing [previous issues](https://github.com/daviemakz/risen-js/issues?q=is%3Aissue) or open a [new issue](https://github.com/daviemakz/risen-js/issues/new).

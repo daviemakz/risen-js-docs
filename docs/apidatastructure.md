@@ -20,20 +20,20 @@ This is the object you would pass into the [request](apiglobalmethods.md#request
 
 #### template
 
-```
+```json
 {
   destination: void 0,
-  functionName: '',
+  functionName: "",
   body: {}
 }
 ```
 
 #### example
 
-```
+```json
 {
-  destination: 'instanceService',
-  functionName: 'respond'
+  destination: "instanceService",
+  functionName: "respond"
   body: null,
 }
 ```
@@ -41,7 +41,7 @@ This is the object you would pass into the [request](apiglobalmethods.md#request
 #### description
 
 - `destination [string]` - The name of the service you want to target. If the destination cannot be found service core will return an error.
-- `functionName [string]` - The operation which will receive the command body as defined in the service definition containing operations for the service.
+- `functionName [string]` - The operation which will receive the command body as defined in the [service definition](terminology.md#service-definition) containing operations for the service.
 - `body [any]` - Any data you want to send to a service instance.
 
 > The `body` here must be serializable. If you are sending binary data you should encode it using base64 or equivalent.
@@ -52,20 +52,20 @@ These are the response you would receive as a callback or a resolved promise val
 
 #### example
 
-```
+```json
 {
   status: true,
   transport: {
     code: 2000,
-    message: 'Transport completed successfully',
+    message: "Transport completed successfully",
     responseSource: {
-      name: 'devService',
+      name: "devService",
       pid: 93381,
       port: 1024,
-      instanceId: 'fba01dad-dc20-4d62-a5e0-4b61704de0cb'
+      instanceId: "fba01dad-dc20-4d62-a5e0-4b61704de0cb"
     }
   },
-  command: { code: 200, message: 'Command completed successfully' },
+  command: { code: 200, message: "Command completed successfully" },
   response: 100,
   error: null
 }
@@ -83,7 +83,7 @@ These are the response you would receive as a callback or a resolved promise val
 
 When you use the [sendSuccess](apiglobalmethods.md#sendsuccess) method like so:
 
-```
+```jsx
 sendSuccess({
   result: 50
 });
@@ -95,7 +95,7 @@ The result will be set to the response property.
 
 When you use the [sendError](apiglobalmethods.md#senderror) method like so:
 
-```
+```jsx
 sendError({
   result: 50
 });

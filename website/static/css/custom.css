@@ -63,6 +63,10 @@
   max-width: 80px;
 }
 
+.wrapper.homeWrapper {
+  padding-bottom: 0px;
+}
+
 a {
   color: #5dacbd
 }

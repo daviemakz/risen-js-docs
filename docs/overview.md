@@ -29,3 +29,5 @@ Because the "services" you will create run as independent Node.JS processes, thi
 ## Use Cases
 
 From inserting and retrieving data from a separate external database (e.g. Redis) to a service that converts images. It’s even possible to use this framework alongside [server-side rendering](https://reactjs.org/docs/react-dom-server.html), the possibilities are endless!
+
+In the cases of an operation which blocks the service thread, you can use `cluster` within the service to offload work onto another thread, ensuring your service remains asynchronous.

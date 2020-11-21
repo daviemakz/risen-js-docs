@@ -8,9 +8,9 @@ sidebar_label: See Results
 
 We have everything in place so all we need to do now is execute the application to spin up our framework.
 
-> Ensure no other processes are running on port `8080` and `8081` as defined by the configuration. Port `8080` allows you to access the running framework via HTTP or connect to the Risen.JS directly on port `8081 if you have a separate instance of Risen.JS running in the`client` mode.
+> Ensure no other processes are running on port `8080` and `8081` as defined by the configuration. Port `8080` allows you to access the running framework via HTTP or connect to the Risen.JS directly on port `8081` if you have a separate instance of Risen.JS running in `client` mode.
 
-```
+```sh
 node index.js
 ```
 
@@ -53,7 +53,7 @@ Congratulations, everything is working as it should! Now notice the red box show
 
 In our previous step we defined Risen.JS to initialize two identical instances of the `render` service:
 
-```
+```jsx
 RisenInstance.defineService("render", "./services/render/index.jsx", {
   babelConfig: {
     presets: ["@babel/preset-env", "@babel/preset-react"]
@@ -78,7 +78,7 @@ Now you should see:
 
 ![Calculating 3000](assets/search-3000.png)
 
-Risen.JS also works for use cases without a "client". For example, if you have tasks you wanted to automate in a backend, perhaps doing things like sending emails to customers, updating accounting records, automatically generating and posting social media posts you can define a service to do all of this in Risen.JS.
+Risen.JS also works for use cases without a "client". For example, if you have tasks you wanted to automate in a backend, perhaps doing things like sending emails to customers, updating accounting records, automatically generating and posting social media posts you can define services to do all of this in Risen.JS.
 
 This means you can **automate** a large number of daily business operations, streamlining your processes, reducing overhead, and cutting costs in the process.
 
@@ -88,7 +88,9 @@ Not let's give it a bigger workload. Let's calculate all the prime numbers up to
 http://localhost:8080/?prime=1000000
 ```
 
-After a short pause, you should have the result in your browser. Running this workload on a single thread would vastly increase the time to get a response. Because we are splitting this workload between four service instances of `prime`, each one calculating an interval of 250000, and a separate service instance `render` dedicated to generating the HTML, we can perform this calculation much faster.
+After a short pause, you should have the result in your browser. Running this workload on a single thread would vastly increase the time to get a response.
+
+Because we are splitting this workload between four service instances of `prime`, each one calculating an interval of 250000, and a separate service instance `render` dedicated to generating the HTML, we can perform fulfil the entire request much faster.
 
 ## Check Your Terminal
 
@@ -123,7 +125,7 @@ As you can see you can track the flow of data through the Risen.JS framework. _Y
 
 It's important for this to not be too confusing so let's take a high-level overview of the lifecycle of your request:
 
-1. You navigate to http://localhost:3000 and your browsers send a GET request to this address.
+1. You navigate to http://localhost:3000 and your browser sends a GET request to this address.
 2. The express server receives the GET request from your browser.
 3. The express server checks to see if it matches an HTTP route.
 4. It finds the route and then executes the HTTP route handler for that route.
@@ -131,11 +133,11 @@ It's important for this to not be too confusing so let's take a high-level overv
 6. The service core receives the request and ensures it's valid.
 7. The service core then sends the data to the `render` service, load-balanced via round-robin.
 8. The `render` service received the requests and splits the workload into four parts.
-9. The `render` service then sends four requests to the service core, the destination being the `prime` service.
+9. The `render` service then sends four requests to the service core, the end destination being the `prime` service.
 10. Again the service core validates all requests it's receiving from `render` service.
 11. It then sends the requests to each of the `prime` services as requested by the `render` service.
 12. All four `prime` services calculate their respective workloads and send the result back to the service core.
-13. The service core sends this result back to the `render` service.
+13. The service core validates the response and sends the results back to the `render` service.
 14. The `render` service assembles all the results it's received from the `prime` services.
 15. The `render` service then uses the result to generate static HTML markup.
 16. It then sends this response back to the express server it originally received the request from.
@@ -170,9 +172,9 @@ Putting the step number against the line of output this is what we end up with:
 
 > Risen.JS is an asynchronous event-driven by design meaning the logs won't always correspond to when the happens.
 
-## Service Core and Persistent Connections
+## Persistent Connections
 
-Please note that Risen.JS maintains **persistent connections** with all instances and express servers so there is no connection initialization latency involved in communication.
+Risen.JS maintains **persistent connections** with all instances and express servers so there is no connection initialization latency involved in communication.
 
 It may appear that sending everything via the service core may slow things down, the important thing to remember is if service instances were messaging each other directly there would be greater complexity and potential concurrency issues.
 
@@ -180,7 +182,7 @@ The state of the entire instance and its services would need to be synchronized 
 
 If a service exits unexpectedly all the running services would need to be informed of this, raising the risk of unexpected race conditions and pitfalls.
 
-For example, the service core operations allow dynamic scaling of service instances and if it were to reduce the number while another service is communicating with it you would begin to get unexpected behavior and less reliability.
+For example, the service core operations allow dynamic scaling of service instances and if it were to reduce the number while another service is communicating with it you would begin to get unexpected behaviour and less reliability.
 
 Having everything flow through the service core ensures that the framework has a single source of truth and if a service instance fails, for example, for any reason the other service instances do not need to be aware of this.
 
@@ -194,6 +196,6 @@ It’s worth noting that this framework _intentionally_ has a function that bloc
 
 This is to demonstrate that blocking service will not stop Risen.JS from serving content and routing requests to their destinations.
 
-Of course, you should design your services in a way that does not block your service instances from receiving and processing new requests.
+Of course, you should design your services in a way that does not block your service instances from receiving and processing new requests. Forking computationally expensive operations via the `cluster` module is one way to deal with this as well as using strictly asynchronous methods.
 
 That's it for now, feel free to put the application through its paces, or if you're ready to learn more go to the next section to dive into the API documentation.

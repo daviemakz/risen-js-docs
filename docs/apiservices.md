@@ -18,7 +18,7 @@ If you use ES6+ anywhere in the file (or its imports) make sure to specify a `ba
 
 This is an example of a service definition file for a service which performs arithmetic calculations by reducing an array of numbers:
 
-```
+```jsx
 module.exports = {
   multiplyArrayElements({ data, sendSuccess }) {
     const listOfNumbers = data.body;
@@ -67,11 +67,11 @@ module.exports = {
 
 To send a command to one of the operations (for example `addArrayElements`) in a running service instance your [command object](apidatastructure.md#command-object) would look like this:
 
-```
+```json
 {
   body: [1,2,3,4,5,6],
-  functionName: 'addArrayElements'
-  destination: 'numbersService'
+  functionName: "addArrayElements"
+  destination: "numbersService"
 }
 ```
 

@@ -8,7 +8,7 @@ sidebar_label: Configure Framework
 
 Create the file which will contain all the configuration for Risen.JS framework:
 
-```
+```sh
 touch index.js
 ```
 
@@ -16,13 +16,17 @@ touch index.js
 
 This is the file which will configure our framework and bring everything together. Paste this into the `index.js` file you've just created:
 
-```
+```jsx
 const { Risen } = require("risen-js");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 
+// If no prime is defined in the query string we default to this
 const defaultPrimeNumber = 25;
 
+
+// This is a route object which our Express server will use to map the
+// HTTP request/method and communicate with Risen.JS
 const routes = [
   {
     method: "GET",
@@ -101,9 +105,9 @@ The folder structure should have so far should look like this:
 ├── package.json
 ├── services
 │   ├── prime
-│   │   └── index.js // "prime" service operations file
+│   │   └── index.js // "prime" service definition file
 │   └── render
-│       └── index.jsx // "render" service operations file
+│       └── index.jsx // "render" service definition file
 └── yarn.lock | package.json
 ```
 

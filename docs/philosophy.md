@@ -10,11 +10,9 @@ There is a lot of Node.JS-based microservice frameworks out there and some of th
 
 ## Guiding Principles
 
-This package was created to handle a lot of the complexity involved in deploying robust and dependable microservices.
+This package was created to handle a lot of the complexity involved in deploying robust and dependable microservices. Its also designed to support the latest ECMA features as they come out ensuring you are writing in modern JavaScript.
 
-Its also designed to use the latest ECMA code
-
-These are the key principles which led to the design of this package:
+These are the key principles which led to the design of this library:
 
 - The framework should allow the latest JavaScript features to be used with built-in transpiler support via [Babel](https://babeljs.io/)
 - The framework should not require extensive knowledge outside of JavaScript

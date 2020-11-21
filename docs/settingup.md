@@ -8,15 +8,16 @@ sidebar_label: Setting Up
 
 We are going to create a simple HTTP-based microservice framework that will use Node.JS & React.JS server-side rendering to calculate all the prime numbers up to a certain number, defined within a query string, and return a server-side rendered [React.JS](https://reactjs.org) page back to your browser.
 
-The reason we are combining both **frontend** and **backend** elements in this example is to show the power and versatility of this framework.
+The reason we are combining both **frontend** and **backend** elements in this example is to show the flexibility and versatility of this framework.
 
-We will also distribute the workload across **multiple instances** of the same service we will use to do the calculation with very little configuration.
+We will also distribute the workload across **multiple instances** of the same service we will use to do the calculation with very little configuration. The example will be based on Linux however you can do the same thing with macOS & Windows.
 
-The example will be based on Linux however you can do the same thing with macOS & Windows. We will skip going through each line of JavaScript code as this example assumes basic knowledge of JavaScript.
-
-This tutorial is geared at first-time users who want detailed instructions on how to go from zero to a Risen.JS deployable framework. There are guides available in this documentation which will go into detail on each aspect of Risen.JS. Let's start!
+This tutorial is geared at first-time users who want detailed instructions on how to go from zero to a Risen.JS deployable framework.
+There are guides available in this documentation which will go into detail on each aspect of Risen.JS. Let's start!
 
 **Tutorial Time:** ~15-20 mins
+
+> We will not go into the detail of each line of JavaScript code as this example assumes basic knowledge of JavaScript.
 
 ### Demo
 

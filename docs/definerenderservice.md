@@ -4,17 +4,17 @@ title: Define the "render" service
 sidebar_label: Render Service
 ---
 
-Let's now define the second service called `render`. This service will have one operation called `renderPage` and will receive requests from your browser (routed through Risen.JS).
+Let's now define the second service called `render`. This service will have one operation called `renderPage` and will receive requests from your browser (routed through Express).
 
-We are going to get the list of primes from other running services called `prime`. We want to split and dispatch the work between **four** `prime` service instances meaning we are calculating the full list in parallel!
+We are going to get the list of prime numbers from the service instances of `prime`. So here we want to split and dispatch the work between **four** `prime` service instances meaning we are calculating the full list in parallel!
 
-The `prime` services will calculate the list of prime numbers and sent their responses back to this service which will then combine all the results. After this, the service will generate the HTML server-side then send the response back to your browser.
+The `prime` services will calculate the list of prime numbers and sent their responses back to the `render` service which will then combine all the results. After this, the service will generate the HTML server-side then send the response back to your browser.
 
 ## Create Folder
 
 Create a new folder called `services/render` and cd into that folder:
 
-```
+```sh
 mkdir -p services/render && cd services/render
 ```
 
@@ -22,7 +22,7 @@ mkdir -p services/render && cd services/render
 
 Create the file which will contain the service you are going to initialize in the framework later:
 
-```
+```sh
 touch index.jsx
 ```
 
@@ -30,11 +30,11 @@ touch index.jsx
 
 Paste the following code into the file you've just created. This is to make the React.JS server-side rendering work:
 
-```
-import React from 'react';
-import PropTypes from 'prop-types';
-import { renderToString } from 'react-dom/server';
-import { Layout, Breadcrumb, Tag } from 'antd';
+```jsx
+import React from "react";
+import PropTypes from "prop-types";
+import { renderToString } from "react-dom/server";
+import { Layout, Breadcrumb, Tag } from "antd";
 
 const { Content, Footer } = Layout;
 
@@ -68,8 +68,8 @@ const PrimeNumberApp = ({ prime, listOfPrimes }) => (
     </head>
     <body>
       <Layout className="layout">
-        <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+        <Content style={{ padding: "0 50px" }}>
+          <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>Prime Number Finder</Breadcrumb.Item>
             <Breadcrumb.Item>
@@ -77,16 +77,16 @@ const PrimeNumberApp = ({ prime, listOfPrimes }) => (
               {` ${prime}`}
             </Breadcrumb.Item>
           </Breadcrumb>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+          <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
             <div
               style={{
-                background: '#fff',
+                background: "#fff",
                 padding: 24,
-                minHeight: 'calc(100vh - 170px)',
+                minHeight: "calc(100vh - 170px)",
               }}
             >
               {listOfPrimes.map((number) => (
-                <Tag style={{ marginBottom: '8px' }} key={number}>
+                <Tag style={{ marginBottom: "8px" }} key={number}>
                   {number}
                 </Tag>
               ))}
@@ -95,7 +95,7 @@ const PrimeNumberApp = ({ prime, listOfPrimes }) => (
         </Content>
         <Footer
           style={{
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           {`This page was rendered on the server by an instance of the
@@ -118,8 +118,8 @@ export default {
     return Promise.all(
       intervals.map(([start, end]) => request({
         body: { start, end },
-        destination: 'prime',
-        functionName: 'getPrimeListFromRange',
+        destination: "prime",
+        functionName: "getPrimeListFromRange",
       })),
     ).then((results) => {
       // Reduce the results from all the processes into one array
@@ -142,7 +142,9 @@ export default {
 
 Back To Root:
 
-`cd ../..`
+```sh
+cd ../..
+```
 
 ## Summary
 

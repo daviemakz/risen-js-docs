@@ -6,7 +6,7 @@ sidebar_label: Instance
 
 ## The `RisenInstance` class
 
-```
+```jsx
 const risenInstance = new Risen(...);
 ```
 
@@ -16,17 +16,17 @@ Once you have initialized your `Risen` class the result is a `RisenInstance`, wh
 
 This method allows you to define a service that will can then be started by Risen.JS.
 
-```
+```jsx
 risenInstance.defineService(serviceName, serviceDefinitionPath, options);
 ```
 
 #### example
 
-```
-risenInstance.defineService('render', './services/render.js', {
+```jsx
+risenInstance.defineService("render", "./services/render.js", {
   babelConfig: {},
   instances: 1,
-  loadBalancing: 'roundRobin',
+  loadBalancing: "roundRobin",
   runOnStart: []
 });
 ```
@@ -34,7 +34,7 @@ risenInstance.defineService('render', './services/render.js', {
 #### parameters
 
 - `serviceName [string]` - This is the name of your service. It's what you will use to send data to instances of this service.
-- `serviceDefinitionPath [string]` - This can be a relative path or an absolute path of your service definition file.
+- `serviceDefinitionPath [string]` - This can be a relative path or an absolute path of your [service definition](terminology.md#service-definition) file.
 - `options [object]` - The options of the service.
 
 ##### serviceName
@@ -43,7 +43,7 @@ This must be a string and unique to all other services otherwise you will get an
 
 ##### serviceDefinitionPath
 
-This can be a relative path or an absolute path. This file should contain a service definition containing a default export of an object with a collection of functions. Please visit the [Services](apiservices.md#example-service) section to get details on what this file should contain.
+This can be a relative path or an absolute path. This file should contain a [service definition](terminology.md#service-definition) containing a default export of an object with a collection of functions. Please visit the [Services](apiservices.md#example-service) section to get details on what this file should contain.
 
 ##### options
 
@@ -51,10 +51,10 @@ The file which configures your service.
 
 ###### default
 
-```
+```json
 {
   babelConfig: {},
-  loadBalancing: 'roundRobin',
+  loadBalancing: "roundRobin",
   runOnStart: [],
   instances: 1
 }
@@ -64,9 +64,9 @@ The file which configures your service.
 
 ###### description
 
-- `babelConfig [object]` - If defined this should be a babel [configuration](https://babeljs.io/docs/en/configuration) and Risen.JS will transpile the service definition before starting the service.
+- `babelConfig [object]` - If defined this should be a babel [configuration](https://babeljs.io/docs/en/configuration) and Risen.JS will transpile the [service definition](terminology.md#service-definition) before starting the service.
 - `loadBalancing [string]` - What is the load balancing strategy for this service. See the [section](#loadbalancing) for more information.
-- `runOnStart [array]` An array containing the names of functions you want to execute when the service instance starts. These should be in your service definition file.
+- `runOnStart [array]` An array containing the names of functions you want to execute when the service instance starts. These should be in your [service definition](terminology.md#service-definition) file.
 - `instances [number]` - This defines how many instances of the service should the service core start.
 
 > If you include `babelConfig` ensure you have installed your presets and plugins relative to the Risen.JS configuration file. If not you will get an error on startup.
@@ -93,7 +93,7 @@ In our context it means requests are sent to each service instance in equal port
 
 Here you can completely control how requests are sent to your service instances. For this you need to pass a function with the signature:
 
-```
+```json
 {
   loadBalancing: (socketList, command) => {
      return socketList[0]
@@ -119,7 +119,7 @@ Ensure you have finished the configuration before starting the Risen.JS framewor
 
 #### example
 
-```
+```jsx
 risenInstance.startServer();
 ```
 
@@ -133,7 +133,7 @@ This method allows you to log anything to the log file (if it's defined) and the
 
 #### example
 
-```
+```jsx
 risenInstance.log(message, level, override);
 ```
 

@@ -8,13 +8,15 @@ sidebar_label: Security
 
 Risen.JS is intended to be used only by trusted clients inside trusted environments.
 
-This means that usually, it is not a good idea to expose the Risen.JS service port directly to the internet or to an environment where untrusted clients can directly access the Risen.JS port.
+This means that usually, it is not a good idea to expose the Risen.JS service port directly to the internet or to an environment where untrusted clients can directly access the Risen.JS port or any of its services.
+
+This is best implemented by whitelisting only the ports you want to expose externally rather than forbidding certain ports _e.g. in the case of HTTP(s) port 80 & 443._
 
 As Risen.JS is designed for building full server-side applications Risen.JS it includes the robust [Express](http://expressjs.com) library to make building RESTFul API's which you can expose to untrusted environments. This is the only port which should be accessible outside of your trusted environment.
 
 ### Using `harden` option
 
-We include an optional harden option for all Express servers which can be enabled by setting this to `true` when configuring your [http](apirisen.md#http-configuration) server(s). _It is disabled by default._
+We include an optional harden option for all Express servers which can be enabled by setting this to `true` when configuring your [http](apirisen.md#http-configuration) server(s).  
 
 This is powered by [Helmet](https://github.com/helmetjs/helmet) which protects your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Default protections include:
 
@@ -35,7 +37,7 @@ Access to the Risen.JS port should be denied to everybody but trusted clients in
 
 In the common case of a single computer directly exposed to the internet, such as a virtualized Linux instance, the Risen.JS port should be fire-walled to prevent access from the outside while the Express server can be exposed.
 
-Clients will still be able to access Risen.JS using the loopback interface within the environment. Note that it is possible to bind Risen.JS to the address `0.0.0.0` by just specifying the `port` without the `host` but this is not recommended as you are binding to all interfaces at the same time.
+Clients will still be able to access Risen.JS using the loopback interface within the environment. Note that it is possible to bind Risen.JS to the address `0.0.0.0` by just specifying a `port` without the `host` option but this is not recommended as you are binding to all interfaces at the same time.
 
 Failing to protect the Risen.JS port address from the outside can have a big security impact.
 
@@ -43,4 +45,4 @@ Failing to protect the Risen.JS port address from the outside can have a big sec
 
 Risen.JS uses all the well-known practices for writing secure code, preventing buffer overflow, and other memory corruption issues. Risen.JS does not require root privileges to run as it's a typical Node.JS application.
 
-It is recommended to run it as an unprivileged Risen.JS user that is only used for this purpose.
+It is recommended to run it as an unprivileged Risen.JS user that is only used for this purpose. It's also recommended to ensure your file/folder permissions do not allow this user to any resources which the Risen.JS service does not need. This will help ensure security is maintained.

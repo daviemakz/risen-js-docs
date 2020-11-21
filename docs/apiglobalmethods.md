@@ -20,17 +20,17 @@ This means any part of Risen.JS can communicate with any other part at any time.
 
 All functions will receive this object as their first parameter which will contain everything you need. Here is an example of the parameter object:
 
-```
+```json
 {
   data: {
-    destination: 'numbersService',
-    functionName: 'addArrayElements',
+    destination: "numbersService",
+    functionName: "addArrayElements",
     body: [1, 2, 3],
     source: {
-      name: 'renderService',
+      name: "renderService",
       pid: 80165,
-      address: 'localhost:1031',
-      instanceId: '76c5222c-be09-4721-b1be-90670155eb86'
+      address: "localhost:1031",
+      instanceId: "76c5222c-be09-4721-b1be-90670155eb86"
     },
     conId: 0
   },
@@ -80,7 +80,7 @@ This method allows you to send requests in Risen.JS. It supports both the callba
 
 A description of the [command object](apidatastructure.md#command-object) and the schema of the [response object](apidatastructure.md#response-object) is available in the [Data Structure](apidatastructure.md) section.
 
-```
+```jsx
 request(commandObject, callback)
 ```
 
@@ -88,12 +88,12 @@ request(commandObject, callback)
 
 ##### callback
 
-```
+```jsx
 request(
   {
     body: null,
-    destination: 'exampleService',
-    functionName: 'echoData'
+    destination: "exampleService",
+    functionName: "echoData"
   },
   (data) => {
     // do something with the "data"
@@ -103,12 +103,12 @@ request(
 
 ##### promise
 
-```
+```jsx
 async () => {
   const data = await request({
     body: null,
-    destination: 'exampleService',
-    functionName: 'echoData'
+    destination: "exampleService",
+    functionName: "echoData"
   });
   // do something with "data"
 };
@@ -123,7 +123,7 @@ async () => {
 
 As Risen.JS is designed to allow easy communication between multiple services you might want to send multiple requests to multiple sources. Using just the [request](#request) method you could easily end up with messy code.
 
-It can also be the case the commands you send may vary depending on the previous responses you've received and you may want to create these commands based on previous responses. To solve this you have this method.
+It can also be the case the commands you send may vary depending on the previous responses you" ve received and you may want to create these commands based on previous responses. To solve this you have this method.
 
 Instead of passing a [command object](apidatastructure.md#command-object) you instead pass an array of [command objects](apidatastructure.md#command-object) which are processed one at a time.
 
@@ -135,18 +135,18 @@ requestChain(commandList, callback)
 
 ##### callback
 
-```
+```jsx
 requestChain(
   [
     {
-      body: { userId: 'B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE' },
-      destination: 'dbService',
-      functionName: 'getUserAddress'
+      body: { userId: "B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE" },
+      destination: "dbService",
+      functionName: "getUserAddress"
     },
     {
-      body: { userId: 'B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE' },
-      destination: 'geoLocatorService',
-      functionName: 'getUserGeolocation'
+      body: { userId: "B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE" },
+      destination: "geoLocatorService",
+      functionName: "getUserGeolocation"
     }
   ],
   (data) => {
@@ -157,18 +157,18 @@ requestChain(
 
 ##### promise
 
-```
+```jsx
 async () => {
   const data = await requestChain([
     {
-      body: { userId: 'B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE' },
-      destination: 'dbService',
-      functionName: 'getUserAddress'
+      body: { userId: "B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE" },
+      destination: "dbService",
+      functionName: "getUserAddress"
     },
     {
-      body: { userId: 'B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE' },
-      destination: 'geoLocatorService',
-      functionName: 'getUserGeolocation'
+      body: { userId: "B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE" },
+      destination: "geoLocatorService",
+      functionName: "getUserGeolocation"
     }
   ]);
   // do something with "data"
@@ -184,11 +184,11 @@ async () => {
 
 The schema of the [command object](apidatastructure.md#command-object) can be seen in the [Data Structure](apidatastructure.md) section. When used in this method there are two more optional properties added to the [command object](apidatastructure.md#command-object).
 
-```
+```json
 {
-  body: { userId: 'B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE' },
-  destination: 'geoLocatorService',
-  functionName: 'getUserGeolocation',
+  body: { userId: "B8F91C0C-E4EB-4C65-999E-11AA7FEB46DE" },
+  destination: "geoLocatorService",
+  functionName: "getUserGeolocation",
   generateBody: (body, results) => {},
   generateCommand: (body, results) => {},
 }
@@ -200,7 +200,7 @@ This function allows you to generate the body of that command using the results 
 
 ###### example
 
-```
+```json
 {
   body: 125,
   generateBody: (body, results) => {
@@ -209,11 +209,11 @@ This function allows you to generate the body of that command using the results 
       .concat(body);
     return {
       numberList,
-      calculationMethod: 'multiplyArrayElements'
+      calculationMethod: "multiplyArrayElements"
     };
   },
-  destination: 'devService',
-  functionName: 'performCalculation'
+  destination: "devService",
+  functionName: "performCalculation"
 }
 ```
 
@@ -228,16 +228,16 @@ This function allows you to generate a [command object](apidatastructure.md#comm
 
 ###### example
 
-```
+```json
 {
   generateCommand: (body, results) => {
     return {
       body: {
         numberList: results.map((res) => res.response),
-        calculationMethod: 'addArrayElements'
+        calculationMethod: "addArrayElements"
       },
-      destination: 'devService',
-      functionName: 'performCalculation'
+      destination: "devService",
+      functionName: "performCalculation"
     };
   }
 }
@@ -256,13 +256,13 @@ You don't have to worry about which service instance the request came from, just
 
 #### example
 
-```
+```jsx
 sendSuccess(options);
 ```
 
 ##### typical usage
 
-```
+```jsx
 sendSuccess({ result: 50 });
 ```
 
@@ -272,7 +272,7 @@ sendSuccess({ result: 50 });
 
 This is the schema of the parameter object:
 
-```
+```json
 {
   "result": 100,
   "code": 200,
@@ -296,13 +296,13 @@ You don't have to worry about which service instance the request came from, just
 
 #### example
 
-```
+```jsx
 sendError(options);
 ```
 
 ##### typical usage
 
-```
+```jsx
 sendError({ result: 50 });
 ```
 
@@ -312,7 +312,7 @@ sendError({ result: 50 });
 
 This is the schema of the object:
 
-```
+```json
 {
   "result": 100,
   "code": 400,
@@ -330,7 +330,7 @@ The `operations` is an object containing all the operations defined on the servi
 
 #### example
 
-```
+```json
 {
   operations: {
     getStandardResponse: [Function: bound getStandardResponse],
@@ -348,9 +348,9 @@ The `operations` is an object containing all the operations defined on the servi
 
 The only difference here is you will need to pass in your parameters into the operations as you are calling them directly, and not from an incoming request.
 
-So assuming your service definition looks like this, you could:
+So assuming your [service definition](terminology.md#service-definition) looks like this, you could:
 
-```
+```jsx
 module.exports = {
   getYear() {
     return new Date().getFullYear();
@@ -382,9 +382,9 @@ This object will be available on service instances and the service core. The int
 
 #### typical use case
 
-Here' we are going to use this to cache the result of a calculation and return the cached result if we have seen the same arguments before. The calculation is to get the power of a number:
+Here" we are going to use this to cache the result of a calculation and return the cached result if we have seen the same arguments before. The calculation is to get the power of a number:
 
-```
+```jsx
 module.exports = {
   getPowerOfNumber({ data, sendSuccess, localStorage }) {
     const num = data.body;

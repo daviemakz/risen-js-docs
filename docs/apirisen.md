@@ -6,7 +6,7 @@ sidebar_label: Constructor
 
 ## The `Risen` class
 
-```
+```jsx
  new Risen(options);
 ```
 
@@ -22,12 +22,12 @@ Returns: `RisenInstance`
 
 ##### default
 
-```
+```json
 {
-  address: 'localhost:8080',
-  mode: 'server',
+  address: "localhost:8080",
+  mode: "server",
   http: false,
-  databaseNames: ['_defaultTable'],
+  databaseNames: ["_defaultTable"],
   verbose: true,
   maxBuffer: 50, // in megabytes
   logPath: void 0,
@@ -35,7 +35,7 @@ Returns: `RisenInstance`
   connectionTimeout: 1000,
   msConnectionTimeout: 10000,
   msConnectionRetryLimit: 1000,
-  address: 'localhost:8080',
+  address: "localhost:8080",
   portRangeStart: 1024,
   portRangeFinish: 65535,
   coreOperations: {},
@@ -72,9 +72,9 @@ Returns: `RisenInstance`
 
 To start the Risen.JS as a server you do:
 
-```
+```json
 {
-  mode: server,
+  mode: "server",
   ...
 }
 ```
@@ -83,22 +83,22 @@ To start the Risen.JS as a server you do:
 
 You can use the constructor above to also create a client version of Risen.JS.
 
-This means if you have Risen.JS running elsewhere you can initialize a separate class in `client` mode and as long as the address on both instances is the same you can send requests to it.
+This means if you have Risen.JS running elsewhere you can initialize a separate class in `client` mode and as long as the `address` on both instances is the same you can send requests to it.
 
 So assuming you have a Risen.JS server running elsewhere on the address `localhost:8081` you can:
 
-```
+```jsx
 const risenClient = new Risen({
-  address: 'localhost:8081',
-  mode: 'client',
+  address: "localhost:8081",
+  mode: "client",
   verbose: false
 })
 
 risenClient.request(
   {
     body: null,
-    destination: 'exampleService',
-    functionName: 'echoData'
+    destination: "exampleService",
+    functionName: "echoData"
   },
   (data) => {
     // You would get your data here
@@ -115,16 +115,16 @@ Please see the [Service Core Operations](#service-core-operations) section for m
 
 For example, if you define this in your initial configuration it will be bound to the service core the same way as the default service core operations:
 
-```
+```jsx
 function saveStartupTime({ request }) {
   return request({
     body: {
-      method: 'set',
-      table: '_appStats',  // Ensure this table is defined when you initialise your Risen.JS instance
+      method: "set",
+      table: "_appStats",  // Ensure this table is defined when you initialise your Risen.JS instance
       args: [`lastStartupTime`, Date.now()]
     },
-    destination: 'serviceCore',
-    functionName: 'storage'
+    destination: "serviceCore",
+    functionName: "storage"
   });
 }
 
@@ -141,19 +141,19 @@ const coreOperations = {
 
 const risenInstance =  new Risen({
   coreOperations,
-  databaseNames: ['_appStats'],
-  mode: 'server',
+  databaseNames: ["_appStats"],
+  mode: "server",
 });
 ```
 
-> All custom functions must be defined with the `function` keyword not the named arrow function pattern.
+> Custom functions must be defined with the `function` keyword not the named arrow function pattern if you want to access information on Risen.JS using the `this` keyword.
 
 In this example if you want to communicate with the service core custom operation you've just defined called `getServiceData` you would do:
 
-```
+```json
 {
-  destination: 'serviceCore',
-  functionName: 'getServiceData',
+  destination: "serviceCore",
+  functionName: "serviceCore",
   body: null
 }
 ```
@@ -166,12 +166,12 @@ This is a useful feature if you want a service core operation to be executed whe
 
 Looking at the above [example](#coreoperations) there is a custom service core operation called `saveStartupTime()` which saves the time which the Risen.JS framework started up in persistent storage. To run this function on startup you would do:
 
-```
+```jsx
 const risenInstance =  new Risen({
   coreOperations,
-  databaseNames: ['_appStats'],
-  mode: 'server',
-  runOnStart: ['saveStartupTime']
+  databaseNames: ["_appStats"],
+  mode: "server",
+  runOnStart: ["saveStartupTime"]
 });
 ```
 
@@ -183,7 +183,7 @@ Risen.JS allows you to define multiple instances of express as well as exposing 
 
 Below HTTP capabilities are disabled and you will need to start a separate Risen.JS instance in `client` mode & matching `address` to communicate with the framework:
 
-```
+```json
 {
   http: false
 }
@@ -191,11 +191,11 @@ Below HTTP capabilities are disabled and you will need to start a separate Risen
 
 In this case, because we specified an HTTP server we can communicate to the Risen.JS application via this as well as directly with a Risen.JS instance in `client` mode:
 
-```
+```json
 {
   http: [
     {
-      host: 'localhost',
+      host: "localhost",
       port: 8888,
       ssl: false,
       harden: true,
@@ -208,22 +208,26 @@ In this case, because we specified an HTTP server we can communicate to the Rise
 }
 ```
 
+The idea of having multiple Express servers running on different ports in one framework allows you to segregate access to Risen.JS framework as you see fit.
+
+You may, for example, expose one Express server designed to communicate with an external environment while having another for strictly localhost use, having your route handlers setup appropriately.   
+
 > The `beforeStart` and `middlewares` are very powerful as they allow you to have full control of the express object before it's used. `beforeStart` gives you the express instance where you can do what you want with it. The `middlewares` allow you to add middlewares to express.
 
 ### `ssl`
 
 The framework allows starting an express server via HTTPS. The configuration would look like so in that case:
 
-```
+```json
 {
   http: [
     {
-      host: 'localhost',
+      host: "localhost",
       port: 8888,
       ssl: {
-        key: '<YOUR_PATH>/server.key',
-        cert: '<YOUR_PATH>/server.crt',
-        ca: '<YOUR_PATH>/server.pem'
+        key: "<YOUR_PATH>/server.key",
+        cert: "<YOUR_PATH>/server.crt",
+        ca: "<YOUR_PATH>/server.pem"
       },
       harden: true,
       beforeStart: (express) => express,
@@ -239,9 +243,9 @@ The framework allows starting an express server via HTTPS. The configuration wou
 
 ##### example
 
-```
+```json
 {
-  host: 'localhost',
+  host: "localhost",
   port: 8888,
   ssl: false,
   harden: true,
@@ -257,7 +261,7 @@ The framework allows starting an express server via HTTPS. The configuration wou
 - `host [string]` - The express host to bind on.
 - `port [number]` - The express port to listen on.
 - `host [string]` - If you want to bind to a specific address. If omitted it will bind to `0.0.0.0` (all interfaces).
-- `ssl [bool|object]` - Whether HTTPS will be enabled. `false` will run the express server in HTTP and supplying an object (e.g. `{ key: '', cert: '', ca: '' }`) will switch to HTTPS. The `ca` property is optional.
+- `ssl [bool|object]` - Whether HTTPS will be enabled. `false` will run the express server in HTTP and supplying an object (e.g. `{ key: "", cert: "", ca: "" }`) will switch to HTTPS. The `ca` property is optional.
 - `harden [bool]` - This hardening follows the guidance from this [link](https://expressjs.com/en/advanced/best-practice-security.html).
 - `beforeStart [function]` - Allows you access to the express instance before initialization.
 - `middlewares [array]` - If you want to apply middleware to your express instance before initialization.
@@ -266,7 +270,7 @@ The framework allows starting an express server via HTTPS. The configuration wou
 
 ### `routes`
 
-Routes are defined as a collection of objects within an array. Below are the options for each route. You will need to do this for each `URI/method` combination.
+Routes are defined as a collection of objects within an array. Below are the options for each route. You will need to do this for each `uri/method` combination.
 
 #### options.http.routes[...]
 
@@ -274,18 +278,18 @@ Routes are defined as a collection of objects within an array. Below are the opt
 
 A typical route object may look like this:
 
-```
+```json
 {
-  method: 'GET',
-  uri: '/',
+  method: "get",
+  uri: "/",
   preMiddleware: [],
   postMiddleware: [],
   handler: (req, res, next, { request }) =>
     request(
       {
-        body: { query: 'xyx' },
-        destination: 'dbService',
-        functionName: 'searchNames'
+        body: { query: "xyx" },
+        destination: "dbService",
+        functionName: "searchNames"
       },
       (data) => res.send(data);
     )
@@ -320,10 +324,10 @@ You can call these methods from anywhere. Below is the [command object](apidatas
 
 This function shuts down the Risen.JS microservice framework. The service instances are shut down first and then the service core. The [command object](apidatastructure.md#command-object) looks like this:
 
-```
+```json
 {
-  destination: 'serviceCore',
-  functionName: 'end',
+  destination: "serviceCore",
+  functionName: "end",
   body: null // Nothing is required
 }
 ```
@@ -334,14 +338,14 @@ This is the operation that provides access to persistent storage for a running R
 
 The storage is powered by [Quick-DB](https://www.npmjs.com/package/quick.db) so please have a look at available methods to use. The [command object](apidatastructure.md#command-object) looks like this:
 
-```
+```json
 {
-  destination: 'serviceCore',
-  functionName: 'storage',
+  destination: "serviceCore",
+  functionName: "storage",
   body: {
-    method: 'set' // See a full list by visiting the above link
-    table: '_defaultTable', // Make sure you have defined the "table" in the when you initialised Risen.JS or you will get an error.
-    args: ['randomNumber', 1024] // Arguments will change depending on the method, these will be spread across the Quick.DB method
+    method: "set" // See a full list by visiting the above link
+    table: "_defaultTable", // Make sure you have defined the "table" in the when you initialised Risen.JS or you will get an error.
+    args: ["randomNumber", 1024] // Arguments will change depending on the method, these will be spread across the Quick.DB method
   }
 }
 ```
@@ -360,12 +364,12 @@ The command is very simple, define the name of the service you want to change th
 
 The [command object](apidatastructure.md#command-object) for adding **3** instances to a service:
 
-```
+```json
 {
-  destination: 'serviceCore',
-  functionName: 'changeInstances',
+  destination: "serviceCore",
+  functionName: "changeInstances",
   body: {
-    name: 'exampleService' // The name of the service
+    name: "exampleService" // The name of the service
     instances: 3 // The number of instances you want to add
   }
 }
@@ -375,12 +379,12 @@ The [command object](apidatastructure.md#command-object) for adding **3** instan
 
 The [command object](apidatastructure.md#command-object) for removing **3** instances to a service:
 
-```
+```json
 {
-  destination: 'serviceCore',
-  functionName: 'changeInstances',
+  destination: "serviceCore",
+  functionName: "changeInstances",
   body: {
-    name: 'exampleService' // The name of the service
+    name: "exampleService" // The name of the service
     instances: -3 // The number of instances you want to remove
   }
 }

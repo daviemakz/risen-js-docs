@@ -8,13 +8,13 @@ Now at this stage, we are going to define our first service. This service will h
 
 We want to do this because we want to share the workload across multiple identical services of `prime` and then combine the result later.
 
-It will receive these commands from the `render` service, calculate all the prime numbers up to that number, and send the result back to its `render` service.
+The `prime` service will receive these commands from the `render` service, calculate all the prime numbers up to that number, and send the result back to its `render` service.
 
 ## Create Folder
 
 Create a new folder called `services/prime` and cd into that folder:
 
-```
+```sh
 mkdir -p services/prime && cd services/prime
 ```
 
@@ -22,17 +22,17 @@ mkdir -p services/prime && cd services/prime
 
 Create the file which will contain the service you are going to initialize in the framework later. Each service definition is a collection of functions in an object:
 
-```
+```sh
 touch index.js
 ```
 
 ## Add Service Definitions
 
-Paste the following code into the file you've just created. All services require a single service definition file containing an **object** which is the default export of that file.
+Paste the following code into the file you've just created. This is an example of a service definition. All services require a single service definition file containing an **object** which is the default export of that file.
 
 That object simply needs to contain a list of named functions. Each one of these functions will receive the same parameters.
 
-```
+```jsx
 function getPrimeList(min, max) {
   const sieve = [];
   let i;
@@ -71,7 +71,9 @@ module.exports = {
 
 Back To Root:
 
-`cd ../..`
+```sh
+cd ../..
+```
 
 ## Summary
 
@@ -87,8 +89,8 @@ The folder structure should have so far should look like this:
 
 If you have the `tree` command installed in your terminal you can check this by running:
 
-```
-tree -I 'node_modules|cache|test_*'\n
+```sh
+tree -I "node_modules|cache|test_*'\n
 ```
 
 Great work so far, just two more steps to go and we will have a fully build Risen.JS framework! Please continue to the next section...
