@@ -21,7 +21,7 @@ Since there are two parts to this, the transport level and the command level the
 
 You can set your codes using the [sendSuccess](apiglobalmethods.md#sendsuccess) and [sendError](apiglobalmethods.md#senderror) methods as long as you stay within these numerical ranges.
 
-This is to allow you to set different status codes as this can be important when building a server-side application and want to differentiate different types of success or failure states.
+This is to allow you to set different status codes as this can be important when building a server-side application and want to differentiate different types of success or failure responses.
 
 > If using the above methods you set an otherwise successful command to `sendSuccess({result: true, code: 300})`, Risen.JS will interpret this as a failure.
 
