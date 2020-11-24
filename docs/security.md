@@ -22,7 +22,7 @@ This is powered by [Helmet](https://github.com/helmetjs/helmet) which protects y
 
 - `csp` sets the Content-Security-Policy header to help prevent cross-site scripting attacks and other cross-site injections.
 - `hidePoweredBy` removes the X-Powered-By header.
-  hsts sets Strict-Transport-Security header that enforces secure (HTTP over SSL/TLS) connections to the server.
+  hsts sets Strict-Transport-Security header that enforces secure (HTTP over SSL/TLS) connections to the Expresss server.
 - `ieNoOpen` sets X-Download-Options for IE8+.
 - `noCache` sets Cache-Control and Pragma headers to disable client-side caching.
 - `noSniff` sets X-Content-Type-Options to prevent browsers from MIME-sniffing a response away from the declared content-type.

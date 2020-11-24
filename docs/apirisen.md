@@ -85,7 +85,7 @@ You can use the constructor above to also create a client version of Risen.JS.
 
 This means if you have Risen.JS running elsewhere you can initialize a separate class in `client` mode and as long as the `address` on both instances is the same you can send requests to it.
 
-So assuming you have a Risen.JS server running elsewhere on the address `localhost:8081` you can:
+So assuming you have a Risen.JS application running elsewhere on the address `localhost:8081` you can:
 
 ```jsx
 const risenClient = new Risen({
@@ -216,7 +216,7 @@ You may, for example, expose one Express server designed to communicate with an 
 
 ### `ssl`
 
-The framework allows starting an express server via HTTPS. The configuration would look like so in that case:
+The framework allows starting an Express server via HTTPS. The configuration would look like so in that case:
 
 ```json
 {
@@ -261,7 +261,7 @@ The framework allows starting an express server via HTTPS. The configuration wou
 - `host [string]` - The express host to bind on.
 - `port [number]` - The express port to listen on.
 - `host [string]` - If you want to bind to a specific address. If omitted it will bind to `0.0.0.0` (all interfaces).
-- `ssl [bool|object]` - Whether HTTPS will be enabled. `false` will run the express server in HTTP and supplying an object (e.g. `{ key: "", cert: "", ca: "" }`) will switch to HTTPS. The `ca` property is optional.
+- `ssl [bool|object]` - Whether HTTPS will be enabled. `false` will run the Express server in HTTP and supplying an object (e.g. `{ key: "", cert: "", ca: "" }`) will switch to HTTPS. The `ca` property is optional.
 - `harden [bool]` - This hardening follows the guidance from this [link](https://expressjs.com/en/advanced/best-practice-security.html).
 - `beforeStart [function]` - Allows you access to the express instance before initialization.
 - `middlewares [array]` - If you want to apply middleware to your express instance before initialization.

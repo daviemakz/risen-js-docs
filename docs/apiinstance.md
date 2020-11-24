@@ -113,7 +113,7 @@ If you wanted a persistent action to execute on an instance of a service, like p
 
 ### `startServer`
 
-After you have configured your server you use this method to start the server. This method does nothing if you are in the `client` mode.
+After you have configured your framework you use this method to start the server. This method does nothing if you are in the `client` mode.
 
 Ensure you have finished the configuration before starting the Risen.JS framework.
 

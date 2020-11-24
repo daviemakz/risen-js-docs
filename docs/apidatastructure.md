@@ -12,7 +12,7 @@ Below is a description of how commands are sent in Risen.JS. All commands and re
 - Service operations
 - Serice core operations
 - Serice core custom operations
-- Risen.JS instance (both server / client mode)
+- Risen.JS instance (both `server` / `client` mode)
 
 ### Command Object
 
