@@ -29,7 +29,7 @@ const siteConfig = {
     secondaryColor: '#20756d'
   },
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © 2019 - ${new Date().getFullYear()} David Makuni`,
+  copyright: `Copyright © 2018 - ${new Date().getFullYear()} David Makuni`,
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'default'
@@ -46,7 +46,7 @@ const siteConfig = {
   footer: {
     links: [],
     logo: {},
-    copyright: `Copyright © 2019 - ${new Date().getFullYear()} David Makuni`
+    copyright: `Copyright © 2018 - ${new Date().getFullYear()} David Makuni`
   },
   usePrism: ['jsx', 'json','bash', 'sh'],
   scripts: [
