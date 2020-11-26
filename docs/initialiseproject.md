@@ -30,8 +30,8 @@ Install node dependencies (fixing the react version in case of future changes):
 
 ```sh
 # Yarn
-yarn add @babel/register body-parser @babel/core@^7.0.0-0 @babel/preset-react @babel/preset-env react-dom@17.0.1 react@17.0.1 prop-types@15.7.2 compression@1.7.4 body-parser@1.19.0 antd@4.8.2 risen-js@latest
+yarn add @babel/core@7.12.9 @babel/preset-env@7.12.7 @babel/preset-react@7.12.7 antd@4.8.2 body-parser@1.19.0 compression@1.7.4 prop-types@15.7.2 react@17.0.1 react-dom@17.0.1 risen-js@latest
 
 # NPM
-npm install babel/register body-parser @babel/core@^7.0.0-0 @babel/preset-react @babel/preset-env react-dom@17.0.1 react@17.0.1 prop-types@15.7.2 compression@1.7.4 body-parser@1.19.0 antd@4.8.2 risen-js@latest --save
+npm install @babel/core@7.12.9 @babel/preset-env@7.12.7 @babel/preset-react@7.12.7 antd@4.8.2 body-parser@1.19.0 compression@1.7.4 prop-types@15.7.2 react@17.0.1 react-dom@17.0.1 risen-js@latest --save
 ```
